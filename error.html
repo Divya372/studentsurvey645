@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--
+    File: error.html
+    Name: Divya Soni
+    Course: 645 - Assignment 1
+    Purpose: This is the error page displayed when the main page is unavailable
+             or when a user navigates to a non-existent page.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - 645 Assignment 1</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .error-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .error-card {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 #f8d7da;
+        }
+        
+        .error-icon {
+            font-size: 5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .error-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .error-message {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn-home {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
+            color: white;
+        }
+        
+        .btn-survey {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-survey:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .suggestions {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .suggestions h5 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .suggestions li {
+            padding: 8px 0;
+        }
+        
+        .suggestions a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .suggestions a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        footer a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-card">
+            <div class="error-icon">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+            </div>
+            <div class="error-code">404</div>
+            <h1 class="error-title">Oops! Page Not Found</h1>
+            <p class="error-message">
+                The page you are looking for might have been removed, had its name changed, 
+                or is temporarily unavailable. Don't worry, you can find your way back!
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="index.html" class="btn btn-home">
+                    <i class="bi bi-house-fill me-2"></i>Back to Home
+                </a>
+                <a href="survey.html" class="btn btn-survey">
+                    <i class="bi bi-clipboard-check me-2"></i>Take Survey
+                </a>
+            </div>
+            
+            <div class="suggestions">
+                <h5><i class="bi bi-lightbulb me-2"></i>Helpful Links</h5>
+                <ul>
+                    <li><a href="index.html"><i class="bi bi-arrow-right me-2"></i>Homepage</a></li>
+                    <li><a href="survey.html"><i class="bi bi-arrow-right me-2"></i>Student Survey Form</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Divya Soni - 645 Assignment 1</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

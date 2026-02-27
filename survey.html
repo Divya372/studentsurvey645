@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<!--
+    File: survey.html
+    Name: Divya Soni
+    Course: 645 - Assignment 1
+    Purpose: This is the Student Survey form page. It collects feedback from prospective students
+             about their campus visit experience and includes a raffle entry feature.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Survey - 645 Assignment 1</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .survey-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .survey-header h1 {
+            font-weight: 700;
+        }
+        
+        .survey-container {
+            max-width: 900px;
+            margin: -50px auto 50px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .survey-form {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        
+        .section-header {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .required::after {
+            content: " *";
+            color: var(--accent-color);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .checkbox-group, .radio-group {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .btn-submit {
+            background-color: var(--success-color);
+            border: none;
+            padding: 12px 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background-color: #219a52;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .btn-reset {
+            background-color: #95a5a6;
+            border: none;
+            padding: 12px 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-reset:hover {
+            background-color: #7f8c8d;
+            transform: translateY(-2px);
+        }
+        
+        .raffle-info {
+            background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .raffle-info i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .invalid-feedback {
+            display: none;
+        }
+        
+        .was-validated .form-control:invalid ~ .invalid-feedback {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-mortarboard-fill me-2"></i>My Homepage
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="survey.html">Student Survey</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Survey Header -->
+    <section class="survey-header">
+        <div class="container">
+            <h1><i class="bi bi-clipboard-check me-2"></i>Student Survey Form</h1>
+            <p class="lead mt-3">Help us improve by sharing your campus experience!</p>
+        </div>
+    </section>
+
+    <!-- Survey Form -->
+    <div class="survey-container">
+        <div class="survey-form">
+            <form id="surveyForm" class="needs-validation" novalidate>
+                
+                <!-- Personal Information Section -->
+                <h4 class="section-header"><i class="bi bi-person-circle me-2"></i>Personal Information</h4>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label required">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                        <div class="invalid-feedback">Please enter your first name.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label required">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                        <div class="invalid-feedback">Please enter your last name.</div>
+                    </div>
+                    <div class="col-12">
+                        <label for="streetAddress" class="form-label required">Street Address</label>
+                        <input type="text" class="form-control" id="streetAddress" name="streetAddress" required>
+                        <div class="invalid-feedback">Please enter your street address.</div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="city" class="form-label required">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                        <div class="invalid-feedback">Please enter your city.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="state" class="form-label required">State</label>
+                        <input type="text" class="form-control" id="state" name="state" required>
+                        <div class="invalid-feedback">Please enter your state.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="zip" class="form-label required">Zip Code</label>
+                        <input type="text" class="form-control" id="zip" name="zip" pattern="[0-9]{5}" required>
+                        <div class="invalid-feedback">Please enter a valid 5-digit zip code.</div>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <h4 class="section-header"><i class="bi bi-telephone me-2"></i>Contact Information</h4>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label for="telephone" class="form-label required">Telephone Number</label>
+                        <input type="tel" class="form-control" id="telephone" name="telephone" 
+                               placeholder="(123) 456-7890" required>
+                        <div class="invalid-feedback">Please enter your telephone number.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label required">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" 
+                               placeholder="example@email.com" required>
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="surveyDate" class="form-label required">Date of Survey</label>
+                        <input type="date" class="form-control" id="surveyDate" name="surveyDate" required>
+                        <div class="invalid-feedback">Please select the date of your survey.</div>
+                    </div>
+                </div>
+
+                <!-- Campus Preferences Section (Checkboxes) -->
+                <h4 class="section-header"><i class="bi bi-heart me-2"></i>What did you like most about the campus?</h4>
+                <p class="text-muted mb-3">Select all that apply:</p>
+                <div class="checkbox-group mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="likeStudents" name="campusLikes" value="students">
+                                <label class="form-check-label" for="likeStudents">
+                                    <i class="bi bi-people me-1"></i>Students
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="likeLocation" name="campusLikes" value="location">
+                                <label class="form-check-label" for="likeLocation">
+                                    <i class="bi bi-geo-alt me-1"></i>Location
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="likeCampus" name="campusLikes" value="campus">
+                                <label class="form-check-label" for="likeCampus">
+                                    <i class="bi bi-building me-1"></i>Campus
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="likeAtmosphere" name="campusLikes" value="atmosphere">
+                                <label class="form-check-label" for="likeAtmosphere">
+                                    <i class="bi bi-sun me-1"></i>Atmosphere
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="likeDormRooms" name="campusLikes" value="dormRooms">
+                                <label class="form-check-label" for="likeDormRooms">
+                                    <i class="bi bi-house-door me-1"></i>Dorm Rooms
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="likeSports" name="campusLikes" value="sports">
+                                <label class="form-check-label" for="likeSports">
+                                    <i class="bi bi-trophy me-1"></i>Sports
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How Did You Hear Section (Radio Buttons) -->
+                <h4 class="section-header"><i class="bi bi-megaphone me-2"></i>How did you become interested in the university?</h4>
+                <div class="radio-group mb-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="interestSource" id="sourceFriends" value="friends">
+                                <label class="form-check-label" for="sourceFriends">
+                                    <i class="bi bi-people-fill me-1"></i>Friends
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="interestSource" id="sourceTV" value="television">
+                                <label class="form-check-label" for="sourceTV">
+                                    <i class="bi bi-tv me-1"></i>Television
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="interestSource" id="sourceInternet" value="internet">
+                                <label class="form-check-label" for="sourceInternet">
+                                    <i class="bi bi-globe me-1"></i>Internet
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="interestSource" id="sourceOther" value="other">
+                                <label class="form-check-label" for="sourceOther">
+                                    <i class="bi bi-three-dots me-1"></i>Other
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendation Likelihood Section (Dropdown) -->
+                <h4 class="section-header"><i class="bi bi-star me-2"></i>Recommendation</h4>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label for="recommendation" class="form-label">How likely are you to recommend this school to others?</label>
+                        <select class="form-select" id="recommendation" name="recommendation">
+                            <option value="" selected>Select an option...</option>
+                            <option value="veryLikely">Very Likely</option>
+                            <option value="likely">Likely</option>
+                            <option value="unlikely">Unlikely</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Raffle Section -->
+                <h4 class="section-header"><i class="bi bi-ticket-perforated me-2"></i>Raffle Entry</h4>
+                <div class="raffle-info">
+                    <i class="bi bi-gift"></i>
+                    <strong>Win a Free Movie Ticket!</strong> Enter at least 10 comma-separated numbers (1-100) for a chance to win!
+                </div>
+                <div class="mb-4">
+                    <label for="raffle" class="form-label">Raffle Numbers</label>
+                    <input type="text" class="form-control" id="raffle" name="raffle" 
+                           placeholder="e.g., 5, 12, 23, 34, 45, 56, 67, 78, 89, 99">
+                    <div class="form-text">Enter at least 10 numbers between 1 and 100, separated by commas.</div>
+                </div>
+
+                <!-- Additional Comments Section -->
+                <h4 class="section-header"><i class="bi bi-chat-left-text me-2"></i>Additional Comments</h4>
+                <div class="mb-4">
+                    <label for="comments" class="form-label">Share any additional feedback or comments</label>
+                    <textarea class="form-control" id="comments" name="comments" rows="4" 
+                              placeholder="Tell us more about your experience..."></textarea>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="d-flex justify-content-center gap-3 mt-5">
+                    <button type="submit" class="btn btn-submit btn-lg text-white">
+                        <i class="bi bi-send me-2"></i>Submit Survey
+                    </button>
+                    <button type="reset" class="btn btn-reset btn-lg text-white">
+                        <i class="bi bi-x-circle me-2"></i>Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Divya Soni - 645 Assignment 1. All rights reserved.</p>
+            <a href="index.html" class="text-white-50">Back to Homepage</a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Form Validation Script -->
+    <script>
+        // Bootstrap form validation
+        (function () {
+            'use strict'
+            
+            var forms = document.querySelectorAll('.needs-validation')
+            
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    // Validate raffle numbers
+                    var raffleInput = document.getElementById('raffle');
+                    var raffleValue = raffleInput.value.trim();
+                    
+                    if (raffleValue) {
+                        var numbers = raffleValue.split(',').map(function(num) {
+                            return parseInt(num.trim(), 10);
+                        });
+                        
+                        var validNumbers = numbers.filter(function(num) {
+                            return !isNaN(num) && num >= 1 && num <= 100;
+                        });
+                        
+                        if (validNumbers.length < 10) {
+                            raffleInput.setCustomValidity('Please enter at least 10 valid numbers between 1 and 100.');
+                            event.preventDefault();
+                            event.stopPropagation();
+                        } else {
+                            raffleInput.setCustomValidity('');
+                        }
+                    }
+                    
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        event.preventDefault();
+                        alert('Thank you for completing the survey! Your responses have been recorded.');
+                        form.reset();
+                        form.classList.remove('was-validated');
+                        return;
+                    }
+                    
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+        
+        // Set default date to today
+        document.getElementById('surveyDate').valueAsDate = new Date();
+    </script>
+</body>
+</html>

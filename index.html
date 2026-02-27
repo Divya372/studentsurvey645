@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!--
+    File: index.html
+    Name: Divya Soni
+    Course: 645 - Assignment 1
+    Purpose: This is the main homepage for the class assignment. It showcases a personal
+             introduction with an image and provides navigation to the student survey form.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Class Homepage - 645 Assignment 1</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 100px 0;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .about-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .cta-section {
+            background: var(--secondary-color);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .btn-survey {
+            background-color: white;
+            color: var(--secondary-color);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-survey:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .navbar {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-mortarboard-fill me-2"></i>My Homepage
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="survey.html">Student Survey</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h1 class="hero-title">Welcome to My Homepage</h1>
+                    <p class="hero-subtitle">645 - Assignment 1</p>
+                    <p class="lead mt-4">Exploring web development, cloud computing, and creating amazing user experiences through modern technologies.</p>
+                    <a href="survey.html" class="btn btn-light btn-lg mt-3">
+                        <i class="bi bi-clipboard-check me-2"></i>Take Our Survey
+                    </a>
+                </div>
+                <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                    <!-- George Mason University Campus Image -->
+                    <img src="campus.jpg" 
+                         alt="George Mason University Campus" 
+                         class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title">About This Project</h2>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <p class="lead text-muted">
+                        This website is created as part of the 645 course assignment. The project demonstrates 
+                        the fundamentals of web development including HTML5, CSS3, and responsive design using 
+                        Bootstrap framework. The website is hosted on Amazon Web Services (AWS) using both 
+                        S3 static website hosting and EC2 instance deployment.
+                    </p>
+                    <p class="text-muted">
+                        As a student pursuing knowledge in cloud computing and web technologies, this assignment 
+                        provides hands-on experience with real-world deployment scenarios. The integration of 
+                        front-end development with cloud infrastructure showcases the modern approach to 
+                        building and deploying web applications. Feel free to explore the site and take our 
+                        student survey to share your thoughts about our university campus!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">What You'll Find Here</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-house-heart"></i>
+                        </div>
+                        <h4>Homepage</h4>
+                        <p class="text-muted">A beautifully designed landing page showcasing modern web development techniques and responsive design.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-ui-checks"></i>
+                        </div>
+                        <h4>Student Survey</h4>
+                        <p class="text-muted">An interactive survey form for prospective students to share their feedback about the campus experience.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="bi bi-cloud-check"></i>
+                        </div>
+                        <h4>Cloud Hosted</h4>
+                        <p class="text-muted">Deployed on AWS using S3 and EC2, demonstrating practical cloud computing skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <h2 class="mb-4">Ready to Share Your Feedback?</h2>
+            <p class="lead mb-4">Help us improve by taking our quick student survey!</p>
+            <a href="survey.html" class="btn btn-survey">
+                <i class="bi bi-arrow-right-circle me-2"></i>Take the Survey Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-mortarboard-fill me-2"></i>645 Assignment 1</h5>
+                    <p class="text-white-50">A web development project demonstrating HTML, CSS, and AWS deployment.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h6>Quick Links</h6>
+                    <a href="index.html" class="me-3">Home</a>
+                    <a href="survey.html" class="me-3">Survey</a>
+                    <a href="error.html">Error Page</a>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-white-50">&copy; 2026 Divya Soni - 645 Assignment 1. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
