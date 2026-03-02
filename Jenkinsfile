@@ -8,11 +8,11 @@ pipeline {
     
     environment {
         DOCKER_HUB_REPO = "sonidiv372/studentsurvey645"
-        DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials')
         BUILD_TIMESTAMP = "${new Date().format('yyyyMMdd-HHmmss')}"
     }
     
     stages {
+        
         stage('Checkout') {
             steps {
                 echo 'Checking out source code from GitHub...'
@@ -23,9 +23,22 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                script {
-                    sh "docker build -t ${DOCKER_HUB_REPO}:${BUILD_TIMESTAMP} ."
-                    sh "docker tag ${DOCKER_HUB_REPO}:${BUILD_TIMESTAMP} ${DOCKER_HUB_REPO}:latest"
+                sh "docker build -t ${DOCKER_HUB_REPO}:${BUILD_TIMESTAMP} ."
+                sh "docker tag ${DOCKER_HUB_REPO}:${BUILD_TIMESTAMP} ${DOCKER_HUB_REPO}:latest"
+            }
+        }
+        
+        stage('Login to Docker Hub') {
+            steps {
+                echo 'Logging into Docker Hub...'
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-credentials',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh '''
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                    '''
                 }
             }
         }
@@ -33,21 +46,16 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                script {
-                    sh "echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin"
-                    sh "docker push ${DOCKER_HUB_REPO}:${BUILD_TIMESTAMP}"
-                    sh "docker push ${DOCKER_HUB_REPO}:latest"
-                }
+                sh "docker push ${DOCKER_HUB_REPO}:${BUILD_TIMESTAMP}"
+                sh "docker push ${DOCKER_HUB_REPO}:latest"
             }
         }
         
         stage('Deploy to Kubernetes') {
             steps {
                 echo 'Deploying to Kubernetes cluster...'
-                script {
-                    sh "kubectl set image deployment/studentsurvey-deployment studentsurvey=${DOCKER_HUB_REPO}:${BUILD_TIMESTAMP}"
-                    sh "kubectl rollout status deployment/studentsurvey-deployment"
-                }
+                sh "kubectl set image deployment/studentsurvey-deployment studentsurvey=${DOCKER_HUB_REPO}:${BUILD_TIMESTAMP}"
+                sh "kubectl rollout status deployment/studentsurvey-deployment"
             }
         }
     }

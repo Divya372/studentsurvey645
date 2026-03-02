@@ -23,7 +23,8 @@ spec:
       - name: studentsurvey
         image: sonidiv372/studentsurvey645:latest
         ports:
-        - containerPort: 80
+        - name: http
+          containerPort: 80
         resources:
           requests:
             memory: "64Mi"
